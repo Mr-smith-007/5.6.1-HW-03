@@ -66,8 +66,7 @@ class Programm
 
     static bool ControlAge(string number, out int prchislo)
     {
-        int chislo;
-        bool ok = int.TryParse(number, out chislo);
+        bool ok = int.TryParse(number, out int chislo);
         if (ok)
         {
             if (chislo > 0)
@@ -84,8 +83,7 @@ class Programm
 
     static bool ControlPF(string number, out int prchislo)
     {
-        int chislo;
-        bool ok = int.TryParse(number, out chislo);
+        bool ok = int.TryParse(number, out int chislo);
         if (ok)
         {
             if (chislo >= 0)
@@ -103,8 +101,8 @@ class Programm
     static string[] Mass(int num)
     {
         string[] arr = new string[num];
-        foreach (string x in arr)
-            Console.ReadLine();
+        for (int i = 0; i < num; i++)
+            arr[i] = Console.ReadLine();
         return arr;
     }
 
