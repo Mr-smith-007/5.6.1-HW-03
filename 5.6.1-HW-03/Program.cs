@@ -44,6 +44,8 @@ class Programm
 
             default:
                 User.Pet = false;
+                User.PetNum = 0;
+                User.PetNames = Mass(0);
                 break;
         }
 
@@ -59,6 +61,12 @@ class Programm
         {
             Console.WriteLine("Введите ваши любимые цвета:");
             User.Favcolors = Mass(User.ColorsNum);
+        }
+        else
+        {
+            User.ColorsNum = 0;
+            User.Favcolors = Mass(0);
+            
         }
         return User;
     }
