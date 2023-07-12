@@ -22,7 +22,7 @@ class Programm
             Console.WriteLine("Введите возраст цифрами: ");
             age = Console.ReadLine();
         }
-        while (ControlAge(age, out User.Age));
+        while (ControlAgePet(age, out User.Age));
 
 
         Console.Write("Есть ли у вас животные? (да/нет): ");
@@ -37,7 +37,7 @@ class Programm
                     Console.Write("Сколько у Вас питомцев? (введите цифрами): ");
                     pet = Console.ReadLine();
                 }
-                while (ControlPF(pet, out User.PetNum));
+                while (ControlAgePet(pet, out User.PetNum));
                 Console.WriteLine("Как зовут вашего питомца(ев)?");
                 User.PetNames = Mass(User.PetNum);
                 break;
@@ -56,7 +56,7 @@ class Programm
             Console.Write("Сколько у вас любимых цветов?(введите цифрами): ");
             acolor = Console.ReadLine();
         }
-        while (ControlPF(acolor, out User.ColorsNum));
+        while (ControlColor(acolor, out User.ColorsNum));
         if (User.ColorsNum != 0)
         {
             Console.WriteLine("Введите ваши любимые цвета:");
@@ -66,13 +66,13 @@ class Programm
         {
             User.ColorsNum = 0;
             User.Favcolors = Mass(0);
-            
+
         }
         return User;
     }
 
 
-    static bool ControlAge(string number, out int prchislo)
+    static bool ControlAgePet(string number, out int prchislo)
     {
         bool ok = int.TryParse(number, out int chislo);
         if (ok)
@@ -89,7 +89,7 @@ class Programm
     }
 
 
-    static bool ControlPF(string number, out int prchislo)
+    static bool ControlColor(string number, out int prchislo)
     {
         bool ok = int.TryParse(number, out int chislo);
         if (ok)
@@ -115,9 +115,35 @@ class Programm
     }
 
 
+    static void PrintUser((string Name, string LName, int Age, bool Pet, int PetNum, string[] PetNames, int ColorsNum, string[] Favcolors) User)
+    {
+        Console.WriteLine($"Вас зовут: {User.Name}");
+        Console.WriteLine($"Ваша фамилия: {User.LName}");
+        Console.WriteLine($"Ваш возраст: {User.Age}");
+        if (User.Pet)
+        {
+            Console.WriteLine("Ваших питомцев зовут:");
+            foreach (string x in User.PetNames)
+                Console.WriteLine(x);
+        }
+        else
+        {
+            Console.WriteLine("У вас нет питомцев");
+        }
+        if (User.ColorsNum > 0)
+        {
+            Console.WriteLine("Ваши любимые цвета:");
+            foreach (string x in User.Favcolors)
+                Console.WriteLine(x);
+        }
+        else
+            Console.WriteLine("У вас нет любимых цветов");
+
+    }
+
     public static void Main(string[] args)
     {
-        EnterUser();
+        PrintUser(EnterUser());
         Console.ReadKey();
 
 
